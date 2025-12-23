@@ -1,0 +1,29 @@
+import requests 
+import json
+import os 
+# Get GitHub token from environment variable for security
+gitHub_token = os.getenv("GITHUB_TOKEN")
+headers = {"Authorization": f"token {gitHub_token}"} if gitHub_token else {}
+
+search_URL = "https://api.github.com/search/repositories"
+params = {
+    "q": "language:python ", #we will search for python repos 
+    "sort": "stars",
+    "order": "desc",
+    "per_page": 30  #number of results per page
+}
+
+# request from Github 
+response = requests.get(search_URL, headers=headers, params=params)
+if response.status_code != 200:
+    print("Error:", response.status_code, response.text)
+    exit()
+
+repos = response.json().get("items", [])
+print(f"Collected {len(repos)} repositories")
+
+os.makedirs("data/raw", exist_ok=True)
+with open("data/raw/repos_raw.json", "w") as f:
+    json.dump(repos, f, indent=2)
+
+print("Saved raw data to data/raw/repos_raw.json")
