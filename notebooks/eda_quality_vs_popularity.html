@@ -86,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="a0bab91c" class="cell" data-execution_count="1">
+<div id="e2ad0b67" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/processed/repos_with_quality.csv"</span>)</span>
@@ -107,7 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">watchers</th>
 <th data-quarto-table-cell-role="th">open_issues</th>
 <th data-quarto-table-cell-role="th">repo_age_days</th>
+<th data-quarto-table-cell-role="th">repo_age_readable</th>
 <th data-quarto-table-cell-role="th">days_since_last_update</th>
+<th data-quarto-table-cell-role="th">last_update_readable</th>
 <th data-quarto-table-cell-role="th">has_readme</th>
 <th data-quarto-table-cell-role="th">has_license</th>
 <th data-quarto-table-cell-role="th">has_tests</th>
@@ -124,8 +126,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>41360</td>
 <td>387438</td>
 <td>763</td>
-<td>3565</td>
+<td>3566</td>
+<td>9y 9m 11d</td>
 <td>1</td>
+<td>1d</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -140,8 +144,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>65639</td>
 <td>379242</td>
 <td>199</td>
-<td>4457</td>
+<td>4458</td>
+<td>12y 2m 18d</td>
 <td>1</td>
+<td>1d</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -156,8 +162,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>53730</td>
 <td>330056</td>
 <td>516</td>
-<td>3223</td>
+<td>3224</td>
+<td>8y 10m 4d</td>
 <td>1</td>
+<td>1d</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -172,8 +180,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>26944</td>
 <td>275073</td>
 <td>529</td>
-<td>4197</td>
-<td>1</td>
+<td>4198</td>
+<td>11y 6m 3d</td>
+<td>2</td>
+<td>2d</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -188,8 +198,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>49667</td>
 <td>215049</td>
 <td>809</td>
-<td>3448</td>
+<td>3449</td>
+<td>9y 5m 14d</td>
 <td>1</td>
+<td>1d</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -201,18 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="ef79a33f" class="cell" data-execution_count="2">
+<div id="e63ae12b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"has_readme"</span>, <span class="st">"has_license"</span>, <span class="st">"has_tests"</span>, <span class="st">"has_ci"</span>]].mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"has_readme"</span>, <span class="st">"has_license"</span>, <span class="st">"has_tests"</span>, <span class="st">"has_ci"</span>]].<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>has_readme     1.000000
-has_license    0.933333
-has_tests      0.433333
-has_ci         1.000000
-dtype: float64</code></pre>
+<pre><code>has_readme     30
+has_license    28
+has_tests      13
+has_ci         30
+dtype: int64</code></pre>
 </div>
 </div>
-<div id="63b4538c" class="cell" data-execution_count="3">
+<div id="f5e3c948" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"has_tests"</span>)[<span class="st">"stars"</span>].mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>has_tests
@@ -221,7 +233,7 @@ dtype: float64</code></pre>
 Name: stars, dtype: float64</code></pre>
 </div>
 </div>
-<div id="d98be530" class="cell" data-execution_count="4">
+<div id="e2900fd0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.boxplot(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    [df[df[<span class="st">"has_tests"</span>] <span class="op">==</span> <span class="dv">0</span>][<span class="st">"stars"</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     df[df[<span class="st">"has_tests"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"stars"</span>]],</span>
@@ -231,7 +243,7 @@ Name: stars, dtype: float64</code></pre>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"GitHub stars by presence of tests"</span>)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_20424/3392470360.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_26073/3392470360.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
   plt.boxplot(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -242,7 +254,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="1554cb07" class="cell" data-execution_count="5">
+<div id="30417eb4" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.boxplot(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    [df[df[<span class="st">"has_readme"</span>] <span class="op">==</span> <span class="dv">0</span>][<span class="st">"stars"</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     df[df[<span class="st">"has_readme"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"stars"</span>]],</span>
@@ -252,7 +264,7 @@ Name: stars, dtype: float64</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"GitHub stars by presence of README"</span>)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_20424/3039188262.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_26073/3039188262.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
   plt.boxplot(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -263,7 +275,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="8a7bf249" class="cell" data-execution_count="6">
+<div id="8577438e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.boxplot(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    [df[df[<span class="st">"has_license"</span>] <span class="op">==</span> <span class="dv">0</span>][<span class="st">"stars"</span>],</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     df[df[<span class="st">"has_license"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"stars"</span>]],</span>
@@ -273,7 +285,7 @@ Name: stars, dtype: float64</code></pre>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"GitHub stars by presence of license"</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_20424/176308467.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_26073/176308467.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
   plt.boxplot(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -284,7 +296,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="27bed693" class="cell" data-execution_count="7">
+<div id="9e2a4a9b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.boxplot(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    [df[df[<span class="st">"has_ci"</span>] <span class="op">==</span> <span class="dv">0</span>][<span class="st">"stars"</span>],</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     df[df[<span class="st">"has_ci"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"stars"</span>]],</span>
@@ -294,7 +306,7 @@ Name: stars, dtype: float64</code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"GitHub stars by CI configuration"</span>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_20424/1722906665.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+<pre><code>/var/folders/jr/rl2ckf617svb5sdgvwr_ph280000gn/T/ipykernel_26073/1722906665.py:1: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
   plt.boxplot(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -305,7 +317,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="f3df1a01" class="cell" data-execution_count="8">
+<div id="ba7ca73a" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"has_ci"</span>)[<span class="st">"stars"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -354,7 +366,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="76644936" class="cell" data-execution_count="9">
+<div id="681833a3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"has_readme"</span>)[<span class="st">"stars"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -403,7 +415,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="72c0d12e" class="cell" data-execution_count="10">
+<div id="66fb4ffd" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"has_license"</span>)[<span class="st">"stars"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -463,7 +475,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="1b91e63b" class="cell" data-execution_count="11">
+<div id="ae82dd1f" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"quality_score"</span>] <span class="op">=</span> (</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"has_readme"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> df[<span class="st">"has_license"</span>]</span>
@@ -517,7 +529,7 @@ Name: stars, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="5cc3b129" class="cell" data-execution_count="12">
+<div id="7567697b" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>repo_name                 0
@@ -528,7 +540,9 @@ forks                     0
 watchers                  0
 open_issues               0
 repo_age_days             0
+repo_age_readable         0
 days_since_last_update    0
+last_update_readable      0
 has_readme                0
 has_license               0
 has_tests                 0
@@ -537,7 +551,7 @@ quality_score             0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="f84ce6a6" class="cell" data-execution_count="13">
+<div id="f58d3f7b" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"has_readme"</span>, <span class="st">"has_license"</span>, <span class="st">"has_tests"</span>, <span class="st">"has_ci"</span>]].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>has_readme  has_license  has_tests  has_ci
@@ -547,7 +561,7 @@ dtype: int64</code></pre>
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="0d0f021a" class="cell" data-execution_count="14">
+<div id="690d64cc" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"quality_score"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>count    30.000000
@@ -561,7 +575,7 @@ max       4.000000
 Name: quality_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="1cff474b" class="cell" data-execution_count="15">
+<div id="e911152b" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.hist(df[<span class="st">"stars"</span>], bins<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Stars"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of repositories"</span>)</span>
@@ -575,7 +589,7 @@ Name: quality_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="d26434bc" class="cell" data-execution_count="16">
+<div id="c43b4b6a" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">"quality_score"</span>, y<span class="op">=</span><span class="st">"stars"</span>, data<span class="op">=</span>df)</span>

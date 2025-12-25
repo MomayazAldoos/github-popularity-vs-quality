@@ -8,7 +8,7 @@ df.head()
 
 ```{python}
 # 
-df[["has_readme", "has_license", "has_tests", "has_ci"]].mean()
+df[["has_readme", "has_license", "has_tests", "has_ci"]].sum()
 ```
 
 ```{python}
