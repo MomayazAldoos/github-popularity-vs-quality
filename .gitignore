@@ -49,3 +49,5 @@ Thumbs.db
 # Data files (optional - uncomment if you want to ignore large data files)
 # data/raw/*.json
 # data/processed/*.csv
+/.quarto/
+**/*.quarto_ipynb

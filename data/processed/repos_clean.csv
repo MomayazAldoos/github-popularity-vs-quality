@@ -1,0 +1,31 @@
+repo_name,url,language,stars,forks,watchers,open_issues,repo_age_days,repo_age_readable,days_since_last_update,last_update_readable
+public-apis/public-apis,https://github.com/public-apis/public-apis,Python,387438,41360,387438,763,3566,9y 9m 11d,1,1d
+EbookFoundation/free-programming-books,https://github.com/EbookFoundation/free-programming-books,Python,379242,65639,379242,199,4458,12y 2m 18d,1,1d
+donnemartin/system-design-primer,https://github.com/donnemartin/system-design-primer,Python,330056,53730,330056,516,3224,8y 10m 4d,1,1d
+vinta/awesome-python,https://github.com/vinta/awesome-python,Python,275073,26944,275073,529,4198,11y 6m 3d,2,2d
+TheAlgorithms/Python,https://github.com/TheAlgorithms/Python,Python,215049,49667,215049,809,3449,9y 5m 14d,1,1d
+Significant-Gravitas/AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,Python,180462,46189,180462,291,1015,2y 9m 15d,2,2d
+AUTOMATIC1111/stable-diffusion-webui,https://github.com/AUTOMATIC1111/stable-diffusion-webui,Python,159207,29600,159207,2450,1221,3y 4m 6d,1,1d
+huggingface/transformers,https://github.com/huggingface/transformers,Python,154169,31519,154169,2142,2614,7y 1m 29d,1,1d
+langflow-ai/langflow,https://github.com/langflow-ai/langflow,Python,141834,8206,141834,937,1050,2y 10m 20d,2,2d
+yt-dlp/yt-dlp,https://github.com/yt-dlp/yt-dlp,Python,139237,11246,139237,2215,1886,5y 2m 1d,1,1d
+ytdl-org/youtube-dl,https://github.com/ytdl-org/youtube-dl,Python,139233,10575,139233,4120,5534,15y 1m 29d,2,2d
+521xueweihan/HelloGitHub,https://github.com/521xueweihan/HelloGitHub,Python,138045,11001,138045,228,3522,9y 7m 27d,1,1d
+langchain-ai/langchain,https://github.com/langchain-ai/langchain,Python,122543,20196,122543,299,1165,3y 2m 10d,2,2d
+deepseek-ai/DeepSeek-V3,https://github.com/deepseek-ai/DeepSeek-V3,Python,100811,16424,100811,74,364,12m 4d,2,2d
+comfyanonymous/ComfyUI,https://github.com/comfyanonymous/ComfyUI,Python,97840,11088,97840,3358,1073,2y 11m 13d,2,2d
+pytorch/pytorch,https://github.com/pytorch/pytorch,Python,96107,26343,96107,17940,3421,9y 4m 16d,1,1d
+nvbn/thefuck,https://github.com/nvbn/thefuck,Python,94988,3803,94988,397,3914,10y 8m 24d,2,2d
+fastapi/fastapi,https://github.com/fastapi/fastapi,Python,93368,8406,93368,198,2574,7y 0m 19d,2,2d
+openai/whisper,https://github.com/openai/whisper,Python,92277,11564,92277,111,1195,3y 3m 10d,1,1d
+django/django,https://github.com/django/django,Python,86247,33407,86247,370,4989,13y 8m 4d,2,2d
+microsoft/markitdown,https://github.com/microsoft/markitdown,Python,84523,4866,84523,407,406,1y 1m 11d,2,2d
+Shubhamsaboo/awesome-llm-apps,https://github.com/Shubhamsaboo/awesome-llm-apps,Python,83868,11898,83868,5,605,1y 8m 0d,2,2d
+home-assistant/core,https://github.com/home-assistant/core,Python,83627,36272,83627,3207,4482,12y 3m 12d,2,2d
+3b1b/manim,https://github.com/3b1b/manim,Python,82547,6995,82547,484,3930,10y 9m 10d,2,2d
+bregman-arie/devops-exercises,https://github.com/bregman-arie/devops-exercises,Python,80324,18300,80324,47,2275,6y 2m 25d,2,2d
+fighting41love/funNLP,https://github.com/fighting41love/funNLP,Python,78020,15103,78020,43,2683,7y 4m 8d,2,2d
+tensorflow/models,https://github.com/tensorflow/models,Python,77686,45361,77686,1263,3611,9y 10m 26d,2,2d
+hacksider/Deep-Live-Cam,https://github.com/hacksider/Deep-Live-Cam,Python,76404,11150,76404,94,823,2y 3m 3d,2,2d
+d2l-ai/d2l-zh,https://github.com/d2l-ai/d2l-zh,Python,74544,12031,74544,120,3046,8y 4m 6d,2,2d
+browser-use/browser-use,https://github.com/browser-use/browser-use,Python,74062,8868,74062,183,420,1y 1m 25d,2,2d

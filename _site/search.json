@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "data/processed/cleaned_data.html",
+    "href": "data/processed/cleaned_data.html",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "import json \nimport pandas as pd\nfrom datetime import datetime\nimport os\n\n\n\n\n\nwith open(\"/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/raw/repos_raw.json\", \"r\") as f:\n    repos = json.load(f)\n\nprint(f\"Total repositories loaded: {len(repos)}\")\nprint(f\"First repository: {repos[0]['full_name']}\")\n\nTotal repositories loaded: 30\nFirst repository: public-apis/public-apis\n\n\n\n\n\n\ncleaned_data = []\nfor repo in repos:\n    created = datetime.fromisoformat(repo[\"created_at\"].replace(\"Z\", \"\"))\n    updated = datetime.fromisoformat(repo[\"updated_at\"].replace(\"Z\", \"\"))\n\n    age_days = (datetime.now()-created).days\n    days_since_update = (datetime.now()-updated).days\n\n    cleaned_data.append({\n        \"repo_name\" : repo[\"full_name\"],\n        \"url\": repo[\"html_url\"],\n        \"language\": repo[\"language\"],\n        \"stars\": repo[\"stargazers_count\"],\n        \"forks\": repo[\"forks_count\"],\n        \"watchers\": repo[\"watchers_count\"],\n        \"open_issues\": repo[\"open_issues_count\"],\n        \"repo_age_days\": age_days,\n        \"days_since_last_update\": days_since_update\n    })\n\nprint(f\"Processed {len(cleaned_data)} repositories\")\n\nProcessed 30 repositories\n\n\n\n\n\n\ndf = pd.DataFrame(cleaned_data)\nprint(f\"DataFrame shape: {df.shape}\")\nprint(\"\\nFirst 5 rows:\")\ndf.head()\n\nDataFrame shape: (30, 9)\n\nFirst 5 rows:\n\n\n\n\n\n\n\n\n\nrepo_name\nurl\nlanguage\nstars\nforks\nwatchers\nopen_issues\nrepo_age_days\ndays_since_last_update\n\n\n\n\n0\npublic-apis/public-apis\nhttps://github.com/public-apis/public-apis\nPython\n387438\n41360\n387438\n763\n3565\n0\n\n\n1\nEbookFoundation/free-programming-books\nhttps://github.com/EbookFoundation/free-progra...\nPython\n379242\n65639\n379242\n199\n4457\n0\n\n\n2\ndonnemartin/system-design-primer\nhttps://github.com/donnemartin/system-design-p...\nPython\n330056\n53730\n330056\n516\n3222\n0\n\n\n3\nvinta/awesome-python\nhttps://github.com/vinta/awesome-python\nPython\n275073\n26944\n275073\n529\n4197\n0\n\n\n4\nTheAlgorithms/Python\nhttps://github.com/TheAlgorithms/Python\nPython\n215049\n49667\n215049\n809\n3448\n0\n\n\n\n\n\n\n\n\n\n\n\nprint(\"Data types:\")\nprint(df.dtypes)\nprint(\"\\nBasic statistics:\")\ndf.describe()\n\nData types:\nrepo_name                 object\nurl                       object\nlanguage                  object\nstars                      int64\nforks                      int64\nwatchers                   int64\nopen_issues                int64\nrepo_age_days              int64\ndays_since_last_update     int64\ndtype: object\n\nBasic statistics:\n\n\n\n\n\n\n\n\n\nstars\nforks\nwatchers\nopen_issues\nrepo_age_days\ndays_since_last_update\n\n\n\n\ncount\n30.000000\n30.000000\n30.000000\n30.000000\n30.000000\n30.000000\n\n\nmean\n140627.700000\n22925.033333\n140627.700000\n1459.966667\n2556.000000\n0.133333\n\n\nstd\n89490.108706\n16701.600238\n89490.108706\n3307.591044\n1526.813992\n0.345746\n\n\nmin\n74062.000000\n3803.000000\n74062.000000\n5.000000\n363.000000\n0.000000\n\n\n25%\n83687.250000\n11022.750000\n83687.250000\n186.750000\n1095.000000\n0.000000\n\n\n50%\n96973.500000\n15763.500000\n96973.500000\n402.000000\n2647.500000\n0.000000\n\n\n75%\n151085.250000\n32935.000000\n151085.250000\n1181.500000\n3598.750000\n0.000000\n\n\nmax\n387438.000000\n65639.000000\n387438.000000\n17940.000000\n5533.000000\n1.000000"
+  },
+  {
+    "objectID": "data/processed/cleaned_data.html#import-libraries",
+    "href": "data/processed/cleaned_data.html#import-libraries",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "import json \nimport pandas as pd\nfrom datetime import datetime\nimport os"
+  },
+  {
+    "objectID": "data/processed/cleaned_data.html#load-raw-data",
+    "href": "data/processed/cleaned_data.html#load-raw-data",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "with open(\"/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/raw/repos_raw.json\", \"r\") as f:\n    repos = json.load(f)\n\nprint(f\"Total repositories loaded: {len(repos)}\")\nprint(f\"First repository: {repos[0]['full_name']}\")\n\nTotal repositories loaded: 30\nFirst repository: public-apis/public-apis"
+  },
+  {
+    "objectID": "data/processed/cleaned_data.html#data-processing",
+    "href": "data/processed/cleaned_data.html#data-processing",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "cleaned_data = []\nfor repo in repos:\n    created = datetime.fromisoformat(repo[\"created_at\"].replace(\"Z\", \"\"))\n    updated = datetime.fromisoformat(repo[\"updated_at\"].replace(\"Z\", \"\"))\n\n    age_days = (datetime.now()-created).days\n    days_since_update = (datetime.now()-updated).days\n\n    cleaned_data.append({\n        \"repo_name\" : repo[\"full_name\"],\n        \"url\": repo[\"html_url\"],\n        \"language\": repo[\"language\"],\n        \"stars\": repo[\"stargazers_count\"],\n        \"forks\": repo[\"forks_count\"],\n        \"watchers\": repo[\"watchers_count\"],\n        \"open_issues\": repo[\"open_issues_count\"],\n        \"repo_age_days\": age_days,\n        \"days_since_last_update\": days_since_update\n    })\n\nprint(f\"Processed {len(cleaned_data)} repositories\")\n\nProcessed 30 repositories"
+  },
+  {
+    "objectID": "data/processed/cleaned_data.html#create-dataframe-and-view-results",
+    "href": "data/processed/cleaned_data.html#create-dataframe-and-view-results",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "df = pd.DataFrame(cleaned_data)\nprint(f\"DataFrame shape: {df.shape}\")\nprint(\"\\nFirst 5 rows:\")\ndf.head()\n\nDataFrame shape: (30, 9)\n\nFirst 5 rows:\n\n\n\n\n\n\n\n\n\nrepo_name\nurl\nlanguage\nstars\nforks\nwatchers\nopen_issues\nrepo_age_days\ndays_since_last_update\n\n\n\n\n0\npublic-apis/public-apis\nhttps://github.com/public-apis/public-apis\nPython\n387438\n41360\n387438\n763\n3565\n0\n\n\n1\nEbookFoundation/free-programming-books\nhttps://github.com/EbookFoundation/free-progra...\nPython\n379242\n65639\n379242\n199\n4457\n0\n\n\n2\ndonnemartin/system-design-primer\nhttps://github.com/donnemartin/system-design-p...\nPython\n330056\n53730\n330056\n516\n3222\n0\n\n\n3\nvinta/awesome-python\nhttps://github.com/vinta/awesome-python\nPython\n275073\n26944\n275073\n529\n4197\n0\n\n\n4\nTheAlgorithms/Python\nhttps://github.com/TheAlgorithms/Python\nPython\n215049\n49667\n215049\n809\n3448\n0"
+  },
+  {
+    "objectID": "data/processed/cleaned_data.html#data-summary",
+    "href": "data/processed/cleaned_data.html#data-summary",
+    "title": "GitHub Repository Data Cleaning",
+    "section": "",
+    "text": "print(\"Data types:\")\nprint(df.dtypes)\nprint(\"\\nBasic statistics:\")\ndf.describe()\n\nData types:\nrepo_name                 object\nurl                       object\nlanguage                  object\nstars                      int64\nforks                      int64\nwatchers                   int64\nopen_issues                int64\nrepo_age_days              int64\ndays_since_last_update     int64\ndtype: object\n\nBasic statistics:\n\n\n\n\n\n\n\n\n\nstars\nforks\nwatchers\nopen_issues\nrepo_age_days\ndays_since_last_update\n\n\n\n\ncount\n30.000000\n30.000000\n30.000000\n30.000000\n30.000000\n30.000000\n\n\nmean\n140627.700000\n22925.033333\n140627.700000\n1459.966667\n2556.000000\n0.133333\n\n\nstd\n89490.108706\n16701.600238\n89490.108706\n3307.591044\n1526.813992\n0.345746\n\n\nmin\n74062.000000\n3803.000000\n74062.000000\n5.000000\n363.000000\n0.000000\n\n\n25%\n83687.250000\n11022.750000\n83687.250000\n186.750000\n1095.000000\n0.000000\n\n\n50%\n96973.500000\n15763.500000\n96973.500000\n402.000000\n2647.500000\n0.000000\n\n\n75%\n151085.250000\n32935.000000\n151085.250000\n1181.500000\n3598.750000\n0.000000\n\n\nmax\n387438.000000\n65639.000000\n387438.000000\n17940.000000\n5533.000000\n1.000000"
+  }
+]

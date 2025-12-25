@@ -1,0 +1,58 @@
+```{python}
+import json 
+import pandas as pd
+from  datetime import datetime
+import os
+```
+
+```{python}
+with open("/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/raw/repos_raw.json", "r") as f:
+    repos=json.load(f)
+
+def days_to_readable(days):
+    """Convert days to years, months, days format"""
+    years = days // 365
+    remaining_days = days - (years * 365)
+    months = remaining_days // 30
+    final_days = remaining_days - (months * 30)
+    
+    if years > 0:
+        return f"{years}y {months}m {final_days}d"
+    elif months > 0:
+        return f"{months}m {final_days}d"
+    else:
+        return f"{final_days}d"
+
+cleaned_data = []
+for repo in repos:
+    created = datetime.fromisoformat(repo["created_at"].replace("Z", ""))
+    updated = datetime.fromisoformat(repo["updated_at"].replace("Z", ""))
+
+    age_days = (datetime.now()-created).days
+    days_since_update = (datetime.now()-updated).days
+
+    cleaned_data.append({
+        "repo_name" : repo["full_name"],
+        "url": repo["html_url"],
+        "language": repo["language"],
+        "stars": repo["stargazers_count"],
+        "forks": repo["forks_count"],
+        "watchers": repo["watchers_count"],
+        "open_issues": repo["open_issues_count"],
+        "repo_age_days": age_days,
+        "repo_age_readable": days_to_readable(age_days),
+        "days_since_last_update": days_since_update,
+        "last_update_readable": days_to_readable(days_since_update)
+    })
+df = pd.DataFrame(cleaned_data)
+df
+```
+```{python}
+# we want to handle missing values by replacing missed values with unknown word
+df["language"] = df["language"].fillna("Unkown")
+# checking if we still have missing values
+df.isna().sum()
+```
+```{python}
+df.to_csv("/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/processed/repos_clean.csv", index=False)
+```

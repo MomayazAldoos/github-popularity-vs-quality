@@ -1,0 +1,80 @@
+```{python}
+import requests 
+import pandas as pd
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+```
+
+```{python}
+df = pd.read_csv("/Users/momayazaldoos/Desktop/github-popularity-vs-quality/data/processed/repos_clean.csv")
+df.head()
+```
+
+```{python}
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+headers = {"Authorization": f"token {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
+
+def get_repo_contents(owner, repo):
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents"
+    response = requests.get(url, headers = headers)
+    if response.status_code !=200:
+        return[]
+    return response.json()
+```
+
+```{python}
+import time
+
+def analyze_repo(owner, repo):
+    contents = get_repo_contents(owner, repo)
+    
+    # If API call failed, return default values
+    if not contents:
+        print(f"⚠️ Failed to get contents for {owner}/{repo}")
+        return {
+            "has_readme": 0,
+            "has_license": 0, 
+            "has_tests": 0,
+            "has_ci": 0
+        }
+    
+    files = [item["name"].lower() for item in contents if item["type"] == "file"]
+    dirs = [item["name"].lower() for item in contents if item["type"] == "dir"]
+    
+    has_readme = any(name.startswith("readme") for name in files)
+    has_license = any("license" in name for name in files)
+    has_tests = any(name in ["test", "tests"] for name in dirs)
+    has_ci = ".github" in dirs
+
+    
+    
+    return {
+        "has_readme": int(has_readme),
+        "has_license": int(has_license),
+        "has_tests": int(has_tests),
+        "has_ci": int(has_ci)
+    }
+```
+
+```{python}
+# apply to all repositories 
+quality_metrics = []
+
+for _, row in df.iterrows():
+    owner, repo = row["repo_name"].split("/")
+    metrics = analyze_repo(owner, repo)
+    quality_metrics.append(metrics)
+```
+
+```{python}
+quality_df = pd.DataFrame(quality_metrics)
+df = pd.concat([df, quality_df], axis=1)
+df.head()
+```
+
+```{python}
+df.to_csv("../data/processed/repos_with_quality.csv", index=False)
+```
