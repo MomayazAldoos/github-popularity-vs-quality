@@ -35,3 +35,28 @@ with open("data/raw/repos_raw.json", "w") as f:
 
 
 ```
+
+```{python}
+import pandas as pd
+
+# Create a summary table of collected repositories
+repo_data = []
+for repo in repos:
+    repo_data.append({
+        "Repository": repo["full_name"],
+        "Stars": f"{repo['stargazers_count']:,}",
+        "Forks": f"{repo['forks_count']:,}",
+        "Language": repo["language"],
+        "Created": repo["created_at"][:10],  # Just the date part
+        "Last Updated": repo["updated_at"][:10]
+    })
+
+df = pd.DataFrame(repo_data)
+print("📊 Collected Repository Dataset:")
+print("="*50)
+print(df.to_string(index=False))
+print("\n📈 Summary Statistics:")
+print(f"Total Repositories: {len(repos)}")
+print(f"Average Stars: {sum(int(repo['stargazers_count']) for repo in repos) / len(repos):,.0f}")
+print(f"Total Stars: {sum(int(repo['stargazers_count']) for repo in repos):,}")
+```

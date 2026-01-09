@@ -83,12 +83,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="fe0d4e9d" class="cell" data-execution_count="1">
+<div id="c37f6270" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="814ccfa3" class="cell" data-execution_count="2">
+<div id="8621fb16" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get GitHub token from environment variable for security</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gitHub_token <span class="op">=</span> os.getenv(<span class="st">"GITHUB_TOKEN"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">"Authorization"</span>: <span class="ss">f"token </span><span class="sc">{</span>gitHub_token<span class="sc">}</span><span class="ss">"</span>} <span class="cf">if</span> gitHub_token <span class="cf">else</span> {}</span>
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>&lt;Response [200]&gt;</code></pre>
 </div>
 </div>
-<div id="5870b29c" class="cell" data-execution_count="3">
+<div id="cfabab18" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>repos <span class="op">=</span> response.json().get(<span class="st">"items"</span>, [])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Collected </span><span class="sc">{</span><span class="bu">len</span>(repos)<span class="sc">}</span><span class="ss"> repositories"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -120,6 +120,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    json.dump(repos, f, indent<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collected 30 repositories</code></pre>
+</div>
+</div>
+<div id="36a25e1b" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary table of collected repositories</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>repo_data <span class="op">=</span> []</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> repo <span class="kw">in</span> repos:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    repo_data.append({</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Repository"</span>: repo[<span class="st">"full_name"</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Stars"</span>: <span class="ss">f"</span><span class="sc">{</span>repo[<span class="st">'stargazers_count'</span>]<span class="sc">:,}</span><span class="ss">"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Forks"</span>: <span class="ss">f"</span><span class="sc">{</span>repo[<span class="st">'forks_count'</span>]<span class="sc">:,}</span><span class="ss">"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Language"</span>: repo[<span class="st">"language"</span>],</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Created"</span>: repo[<span class="st">"created_at"</span>][:<span class="dv">10</span>],  <span class="co"># Just the date part</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Last Updated"</span>: repo[<span class="st">"updated_at"</span>][:<span class="dv">10</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(repo_data)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"📊 Collected Repository Dataset:"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📈 Summary Statistics:"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Repositories: </span><span class="sc">{</span><span class="bu">len</span>(repos)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average Stars: </span><span class="sc">{</span><span class="bu">sum</span>(<span class="bu">int</span>(repo[<span class="st">'stargazers_count'</span>]) <span class="cf">for</span> repo <span class="kw">in</span> repos) <span class="op">/</span> <span class="bu">len</span>(repos)<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Stars: </span><span class="sc">{</span><span class="bu">sum</span>(<span class="bu">int</span>(repo[<span class="st">'stargazers_count'</span>]) <span class="cf">for</span> repo <span class="kw">in</span> repos)<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>📊 Collected Repository Dataset:
+==================================================
+                           Repository   Stars  Forks Language    Created Last Updated
+              public-apis/public-apis 390,322 41,728   Python 2016-03-20   2026-01-09
+     donnemartin/system-design-primer 331,773 53,986   Python 2017-02-26   2026-01-09
+         Significant-Gravitas/AutoGPT 180,955 46,255   Python 2023-03-16   2026-01-09
+ AUTOMATIC1111/stable-diffusion-webui 159,783 29,760   Python 2022-08-22   2026-01-09
+             huggingface/transformers 154,802 31,666   Python 2018-10-29   2026-01-09
+                 langflow-ai/langflow 143,129  8,275   Python 2023-02-08   2026-01-09
+                        yt-dlp/yt-dlp 141,183 11,421   Python 2020-10-26   2026-01-09
+             521xueweihan/HelloGitHub 139,594 11,044   Python 2016-05-04   2026-01-09
+                      langgenius/dify 125,321 19,484   Python 2023-04-12   2026-01-09
+               langchain-ai/langchain 123,831 20,404   Python 2022-10-17   2026-01-09
+                open-webui/open-webui 120,108 16,928   Python 2023-10-06   2026-01-09
+                    Comfy-Org/ComfyUI  99,605 11,305   Python 2023-01-17   2026-01-09
+                      pytorch/pytorch  96,468 26,468   Python 2016-08-13   2026-01-09
+                      fastapi/fastapi  93,904  8,497   Python 2018-12-08   2026-01-09
+                       openai/whisper  92,959 11,637   Python 2022-09-16   2026-01-09
+        Shubhamsaboo/awesome-llm-apps  87,351 12,469   Python 2024-04-29   2026-01-09
+                        django/django  86,416 33,450   Python 2012-04-28   2026-01-09
+                  home-assistant/core  84,011 36,453   Python 2013-09-17   2026-01-09
+                           3b1b/manim  83,553  7,059   Python 2015-03-22   2026-01-09
+        bregman-arie/devops-exercises  80,542 18,375   Python 2019-10-03   2026-01-09
+                fighting41love/funNLP  78,340 15,118   Python 2018-08-21   2026-01-09
+                    tensorflow/models  77,694 45,339   Python 2016-02-05   2026-01-09
+              hacksider/Deep-Live-Cam  76,948 11,262   Python 2023-09-24   2026-01-09
+              browser-use/browser-use  75,141  8,972   Python 2024-10-31   2026-01-09
+                        d2l-ai/d2l-zh  74,795 12,055   Python 2017-08-23   2026-01-09
+               abi/screenshot-to-code  71,354  8,815   Python 2023-11-14   2026-01-09
+josephmisiti/awesome-machine-learning  71,265 15,234   Python 2014-07-15   2026-01-09
+                   infiniflow/ragflow  71,180  7,783   Python 2023-12-12   2026-01-09
+                        pallets/flask  71,030 16,667   Python 2010-04-06   2026-01-09
+                       python/cpython  70,998 33,860   Python 2017-02-10   2026-01-09
+
+📈 Summary Statistics:
+Total Repositories: 30
+Average Stars: 118,478
+Total Stars: 3,554,355</code></pre>
 </div>
 </div>
 
